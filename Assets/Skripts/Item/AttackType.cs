@@ -1,4 +1,4 @@
-namespace SOD.Item
+namespace SOD.Enums
 {
     public enum AttackType
     {

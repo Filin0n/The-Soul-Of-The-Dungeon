@@ -1,5 +1,5 @@
 using UnityEngine;
-using SOD.Item;
+using SOD.Enums;
 
 namespace SOD.Animations
 {
@@ -35,7 +35,7 @@ namespace SOD.Animations
             switch (weaponType)
             {
                 case AttackType.OneHandSword:
-                    attackAnim = "Sword";
+                    attackAnim = "SwordAttack";
                     break;
 
                 case AttackType.TwoHandSword:
@@ -48,9 +48,6 @@ namespace SOD.Animations
 
                 default: return;
             }
-
-            Debug.Log("Anim trigger: " + attackAnim);
-
             _animator.SetTrigger(attackAnim);
         }
     }

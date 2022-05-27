@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using SOD.Movement;
 using SOD.Animations;
 using SOD.Fight;
-using SOD.Item;
+using SOD.Enums;
 
 namespace SOD.Control
 {
@@ -32,7 +32,7 @@ namespace SOD.Control
 
         private void OnAttack(InputValue value)
         {
-             AttackType weaponType = _playerAttack.Attack();
+             AttackType weaponType = _playerAttack.GetAttackType();
 
             _animationControl.Attack(weaponType);
         }

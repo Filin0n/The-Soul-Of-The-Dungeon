@@ -2,18 +2,17 @@ using UnityEngine;
 
 namespace SOD.Fight
 { 
-    public class HP : MonoBehaviour
+    public class EnemyHP : MonoBehaviour
     {
         [SerializeField] private int _maxHP = 5;
-
-        private int _currentHP;
+        [SerializeField] private int _currentHP;
 
         private void Awake()
         {
             _currentHP = _maxHP;
         }
 
-        public void DamageDiller(int damage)
+        public void TakeDamage(int damage)
         {
             _currentHP -= damage;
 

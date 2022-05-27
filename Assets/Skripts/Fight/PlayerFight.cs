@@ -1,16 +1,21 @@
 using UnityEngine;
-using SOD.Item;
+using SOD.Enums;
 
 
 namespace SOD.Fight
 {
     public class PlayerFight : MonoBehaviour
     {
-        private AttackType _weaponType = AttackType.TwoHandSword;
+        [SerializeField] private Weapon _weapon;
 
-        public AttackType Attack()
+        public void SetIsCanHurt(bool canHurt)
         {
-            return _weaponType;
+            _weapon.SetCanHurt(canHurt);
+        }
+
+        public AttackType GetAttackType()
+        {
+            return _weapon.WeaponAttackType;
         }
     }
 }
