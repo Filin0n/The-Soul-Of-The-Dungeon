@@ -26,14 +26,18 @@ namespace SOD.Control
         {
             Vector2 inputValue = value.Get<Vector2>();
 
-            _movement.moveInput = inputValue;
+            _movement.MoveInput = inputValue;
             _animationControl.UpdateMoveInput(inputValue);
+        }
+
+        private void OnDash(InputValue value)
+        {
+            _movement.Dash();
         }
 
         private void OnAttack(InputValue value)
         {
              AttackType weaponType = _playerAttack.GetAttackType();
-
             _animationControl.Attack(weaponType);
         }
     }

@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 1074122304460578301}
   - component: {fileID: 1074122304460578302}
   - component: {fileID: 1074122304460578303}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122304460578296
 Transform:
@@ -106,12 +106,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1074122304471828967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122304471828967
 Transform:
@@ -145,12 +145,12 @@ GameObject:
   - component: {fileID: 1074122304601466136}
   - component: {fileID: 1074122304601466137}
   - component: {fileID: 1074122304601466138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122304601466139
 Transform:
@@ -242,12 +242,12 @@ GameObject:
   - component: {fileID: 1074122305618738214}
   - component: {fileID: 1074122305618738215}
   - component: {fileID: 1074122305618738208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122305618738209
 Transform:
@@ -339,12 +339,12 @@ GameObject:
   - component: {fileID: 1074122306267436009}
   - component: {fileID: 1074122306267436010}
   - component: {fileID: 1074122306267436011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122306267436020
 Transform:
@@ -436,12 +436,12 @@ GameObject:
   - component: {fileID: 1074122306472130488}
   - component: {fileID: 1074122306472130489}
   - component: {fileID: 1074122306472130490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1074122306472130491
 Transform:
