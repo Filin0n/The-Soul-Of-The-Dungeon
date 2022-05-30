@@ -30,25 +30,10 @@ namespace SOD.Animations
 
         public void Attack(AttackType weaponType)
         {
-            string attackAnim = string.Empty;
+            _animator.SetTrigger("Attack");
 
-            switch (weaponType)
-            {
-                case AttackType.OneHandSword:
-                    attackAnim = "SwordAttack";
-                    break;
-
-                case AttackType.TwoHandSword:
-                    attackAnim = "LongSwordAttack"; 
-                    break;
-
-                case AttackType.Spell:
-                    attackAnim = "Spell";
-                    break;
-
-                default: return;
-            }
-            _animator.SetTrigger(attackAnim);
+            _animator.SetInteger("WeaponTypeInt", (int)weaponType);
+            _animator.SetFloat("WeaponTypeFloat", (float)weaponType);
         }
     }
 }

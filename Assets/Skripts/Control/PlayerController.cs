@@ -9,17 +9,21 @@ namespace SOD.Control
 {
     [RequireComponent(typeof(PlayerMovement))]
     [RequireComponent(typeof(PlayerInput))]
+
     public class PlayerController : MonoBehaviour
     {
+        //Тестовое поле
+        [SerializeField] private int _changeWeaponId;
+
         private PlayerMovement _movement;
         private AnimationControl _animationControl;
-        private PlayerFight _playerAttack;
+        private PlayerFight _playerFight;
 
         private void Awake()
         {
             _movement = GetComponent<PlayerMovement>();
             _animationControl = GetComponent<AnimationControl>();
-            _playerAttack = GetComponent<PlayerFight>();
+            _playerFight = GetComponent<PlayerFight>();
         }
 
         private void OnMove(InputValue value)
@@ -37,8 +41,17 @@ namespace SOD.Control
 
         private void OnAttack(InputValue value)
         {
-             AttackType weaponType = _playerAttack.GetAttackType();
+             AttackType weaponType = _playerFight.GetAttackType();
             _animationControl.Attack(weaponType);
+        }
+
+        //тестовое действие
+        private void OnChangeWeapon(InputValue value)
+        {
+
+            _playerFight.ChaingeWeapon(_changeWeaponId);
+
+            Debug.Log("Change weapon");
         }
     }
 }

@@ -5,10 +5,13 @@ namespace SOD.Fight
 {
     public class Weapon : MonoBehaviour
     {
+        [SerializeField] private int _weaponID;
         [SerializeField] private AttackType _attackType;
         [SerializeField] private int _damage;
 
-        private bool _isCanHurt;
+        [SerializeField] private bool _isCanHurt;
+
+        public int WeaponID => _weaponID;
 
         private void OnEnable()
         {

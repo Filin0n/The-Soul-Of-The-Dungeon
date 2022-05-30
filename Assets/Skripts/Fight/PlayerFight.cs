@@ -1,21 +1,44 @@
+using System.Collections.Generic;
 using UnityEngine;
 using SOD.Enums;
-
 
 namespace SOD.Fight
 {
     public class PlayerFight : MonoBehaviour
     {
-        [SerializeField] private Weapon _weapon;
+        [Header("Right hand")]
+        [SerializeField] private List<Weapon> _weapns;
+
+        private Weapon _currentWeapon;
+
+        private void Start()
+        {
+            ChaingeWeapon(0);
+        }
 
         public void SetIsCanHurt(bool canHurt)
         {
-            _weapon.SetCanHurt(canHurt);
+            _currentWeapon.SetCanHurt(canHurt);
         }
 
         public AttackType GetAttackType()
         {
-            return _weapon.WeaponAttackType;
+            return _currentWeapon?.WeaponAttackType ?? AttackType.Empty;
+        }
+
+        public void ChaingeWeapon(int weaponID)
+        {
+            _currentWeapon?.gameObject.SetActive(false);
+
+            foreach (Weapon weapon in _weapns)
+            {
+                if (weapon.WeaponID == weaponID)
+                {
+                    _currentWeapon = _weapns[weaponID];
+                }
+            }
+
+            _currentWeapon?.gameObject.SetActive(true);
         }
     }
 }
