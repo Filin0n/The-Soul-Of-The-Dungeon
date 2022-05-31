@@ -19,6 +19,21 @@ namespace SOD.Control
         private AnimationControl _animationControl;
         private PlayerFight _playerFight;
 
+        private bool _isCanMove = true;
+
+        public bool IsCanMove 
+        { 
+            set 
+            { 
+                _isCanMove = value;
+
+               // Debug.Log("_isCanMove = " + value);
+
+                if (value == true) return;
+                Move(Vector2.zero);
+            } 
+        }
+
         private void Awake()
         {
             _movement = GetComponent<PlayerMovement>();
@@ -28,10 +43,10 @@ namespace SOD.Control
 
         private void OnMove(InputValue value)
         {
-            Vector2 inputValue = value.Get<Vector2>();
+            if (!_isCanMove) return;
 
-            _movement.MoveInput = inputValue;
-            _animationControl.UpdateMoveInput(inputValue);
+            Vector2 inputValue = value.Get<Vector2>();
+            Move(inputValue);
         }
 
         private void OnDash(InputValue value)
@@ -44,6 +59,14 @@ namespace SOD.Control
              AttackType weaponType = _playerFight.GetAttackType();
             _animationControl.Attack(weaponType);
         }
+
+        private void Move(Vector2 inputValue)
+        {
+            _movement.MoveInput = inputValue;
+            _animationControl.UpdateMoveInput(inputValue);
+        }
+
+
 
         //тестовое действие
         private void OnChangeWeapon(InputValue value)

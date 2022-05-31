@@ -10,13 +10,16 @@ namespace SOD.Movement
         [SerializeField] private float _gravityForce = 20f;
         [SerializeField] private float _dashDistance;
 
-        private float _currentGravityForce;
         private CharacterController _characterController;
+        private float _currentGravityForce;
 
         private Vector2 _moveInput;
         private Vector3 _anchorPosition;
+
         public Vector2 MoveInput { set { _moveInput = value; } }
         public Vector3 AnchorPosition { set { _anchorPosition = value; } }
+
+
 
         private void Awake()
         {
