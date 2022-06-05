@@ -141,11 +141,13 @@ GameObject:
   - component: {fileID: 6198720113665875948}
   - component: {fileID: 3265913138122509449}
   - component: {fileID: 9021332735271115420}
+  - component: {fileID: 3492871890353441425}
   - component: {fileID: 9082485427567579246}
   - component: {fileID: 976791371123353300}
   - component: {fileID: 3041654955962749908}
   - component: {fileID: 2414556570013650134}
   - component: {fileID: 4155533342454594404}
+  - component: {fileID: 5640334197386716982}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -198,6 +200,7 @@ MonoBehaviour:
   _speedMove: 3
   _gravityForce: 40
   _dashDistance: 2
+  IsCanMove: 1
 --- !u!114 &9021332735271115420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +216,25 @@ MonoBehaviour:
   _maxStamina: 10
   _currentStamina: 0
   _recoveryRate: 0.25
-  _recoveryDelay: 1
-  _staminaCanRecover: 1
+  _deshRecoveryDelay: 1
+  _atackRecoveryDelay: 1.5
   _dashConsumption: 3
   _oneHandSword: 3
   _twoHandSword: 5
+--- !u!114 &3492871890353441425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941544947661913390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f04b6e2288e0044580dbee825703ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 5
+  _currentHP: 0
 --- !u!114 &9082485427567579246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,11 +321,25 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2.4
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.22, z: 0}
+--- !u!136 &5640334197386716982
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941544947661913390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2.4
+  m_Direction: 1
   m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!1001 &1595856691540253586
 PrefabInstance:
@@ -796,7 +827,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e9b30040e42cf4f8f3b6aa50927311, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2c822019acad245941b27768dee437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7841345213923442096
@@ -884,7 +915,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197460573455759285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e9b30040e42cf4f8f3b6aa50927311, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2c822019acad245941b27768dee437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8197460573455759285 stripped
