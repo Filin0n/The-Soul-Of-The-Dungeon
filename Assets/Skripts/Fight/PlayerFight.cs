@@ -7,9 +7,9 @@ namespace SOD.Fight
     public class PlayerFight : MonoBehaviour
     {
         [Header("Right hand")]
-        [SerializeField] private List<Weapon> _weapns;
+        [SerializeField] private List<PlayerWeapon> _weapns;
 
-        private Weapon _currentWeapon;
+        private PlayerWeapon _currentWeapon;
 
         private void Start()
         {
@@ -21,16 +21,16 @@ namespace SOD.Fight
             _currentWeapon.SetCanHurt(canHurt);
         }
 
-        public AttackType GetAttackType()
+        public WeaponType GetAttackType()
         {
-            return _currentWeapon?.WeaponAttackType ?? AttackType.Empty;
+            return _currentWeapon?.WeaponAttackType ?? WeaponType.Empty;
         }
 
         public void ChaingeWeapon(int weaponID)
         {
             _currentWeapon?.gameObject.SetActive(false);
 
-            foreach (Weapon weapon in _weapns)
+            foreach (PlayerWeapon weapon in _weapns)
             {
                 if (weapon.WeaponID == weaponID)
                 {

@@ -3,10 +3,10 @@ using SOD.Enums;
 
 namespace SOD.Fight
 {
-    public class Weapon : MonoBehaviour
+    public class PlayerWeapon : MonoBehaviour
     {
         [SerializeField] private int _weaponID;
-        [SerializeField] private AttackType _attackType;
+        [SerializeField] private WeaponType _attackType;
         [SerializeField] private int _damage;
 
         [SerializeField] private bool _isCanHurt;
@@ -18,7 +18,7 @@ namespace SOD.Fight
             _isCanHurt = false;
         }
 
-        public AttackType WeaponAttackType => _attackType;
+        public WeaponType WeaponAttackType => _attackType;
 
         private void OnTriggerEnter(Collider other)
         {

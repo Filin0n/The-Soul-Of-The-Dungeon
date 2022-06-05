@@ -1,6 +1,6 @@
 namespace SOD.Enums
 {
-    public enum AttackType
+    public enum WeaponType
     {
         Empty = -1,
         OneHandSword = 0,

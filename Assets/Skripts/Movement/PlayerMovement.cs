@@ -19,17 +19,17 @@ namespace SOD.Movement
         public Vector2 MoveInput { set { _moveInput = value; } }
         public Vector3 AnchorPosition { set { _anchorPosition = value; } }
 
-
+        public bool IsCanMove = true;
 
         private void Awake()
-        {
+        { 
             _characterController = GetComponent<CharacterController>();
         }
 
         private void Update()
         {
             PlayerMove();
-            Rotation();
+            if(IsCanMove) Rotation();
             Gravity();
         }
 

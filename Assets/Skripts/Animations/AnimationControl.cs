@@ -6,7 +6,6 @@ namespace SOD.Animations
     public class AnimationControl : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-
         private Vector2 _moveInput;
 
         public void UpdateMoveInput(Vector2 input)
@@ -28,7 +27,7 @@ namespace SOD.Animations
             _animator.SetFloat("Vertical", moveDirection.z);
         }
 
-        public void Attack(AttackType weaponType)
+        public void Attack(WeaponType weaponType)
         {
             _animator.SetTrigger("Attack");
 

@@ -15,23 +15,29 @@ namespace SOD.Control
         //Тестовое поле
         [SerializeField] private int _changeWeaponId;
 
+        private Vector2 _inputValue;
         private PlayerMovement _movement;
         private AnimationControl _animationControl;
         private PlayerFight _playerFight;
+        private StaminaControl _staminaControl;
 
         private bool _isCanMove = true;
 
         public bool IsCanMove 
-        { 
-            set 
-            { 
+        { set 
+            {
                 _isCanMove = value;
+                _movement.IsCanMove = value;
 
-               // Debug.Log("_isCanMove = " + value);
-
-                if (value == true) return;
-                Move(Vector2.zero);
-            } 
+                if (value)
+                {
+                    Move(_inputValue);
+                }
+                else
+                {
+                    Move(Vector3.zero);
+                }
+            }
         }
 
         private void Awake()
@@ -39,24 +45,29 @@ namespace SOD.Control
             _movement = GetComponent<PlayerMovement>();
             _animationControl = GetComponent<AnimationControl>();
             _playerFight = GetComponent<PlayerFight>();
+            _staminaControl = GetComponent<StaminaControl>();
+  
         }
 
         private void OnMove(InputValue value)
         {
-            if (!_isCanMove) return;
+            _inputValue = value.Get<Vector2>();
 
-            Vector2 inputValue = value.Get<Vector2>();
-            Move(inputValue);
+            if (!_isCanMove) return;
+            Move(_inputValue);
         }
 
         private void OnDash(InputValue value)
         {
+            if (!_staminaControl.Dash()) return;
             _movement.Dash();
         }
 
         private void OnAttack(InputValue value)
         {
-             AttackType weaponType = _playerFight.GetAttackType();
+             WeaponType weaponType = _playerFight.GetAttackType();
+            if (!_staminaControl.Attack(weaponType)) return;
+
             _animationControl.Attack(weaponType);
         }
 
@@ -71,7 +82,6 @@ namespace SOD.Control
         //тестовое действие
         private void OnChangeWeapon(InputValue value)
         {
-
             _playerFight.ChaingeWeapon(_changeWeaponId);
 
             Debug.Log("Change weapon");
