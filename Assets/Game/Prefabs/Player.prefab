@@ -145,9 +145,9 @@ GameObject:
   - component: {fileID: 9082485427567579246}
   - component: {fileID: 976791371123353300}
   - component: {fileID: 3041654955962749908}
+  - component: {fileID: 6936650233815824384}
   - component: {fileID: 2414556570013650134}
   - component: {fileID: 4155533342454594404}
-  - component: {fileID: 5640334197386716982}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -279,6 +279,18 @@ MonoBehaviour:
   _weapns:
   - {fileID: 1046353097753347124}
   - {fileID: 299429219422970932}
+--- !u!114 &6936650233815824384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941544947661913390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4147d9b3da69c944ca365f5ea3fc3b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2414556570013650134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,25 +333,11 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2.4
-  m_Radius: 0.3
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.22, z: 0}
---- !u!136 &5640334197386716982
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6941544947661913390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2.4
-  m_Direction: 1
   m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!1001 &1595856691540253586
 PrefabInstance:

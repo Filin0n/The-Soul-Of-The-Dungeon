@@ -46,7 +46,6 @@ namespace SOD.Movement
 
         public void Dash()
         {
-            Debug.Log("Dash");
             Vector3 DashVector = Vector3.zero;
 
             DashVector.x = _moveInput.x * _dashDistance;

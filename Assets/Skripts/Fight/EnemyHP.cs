@@ -24,7 +24,6 @@ namespace SOD.Fight
 
         private void Die()
         {
-            Debug.Log("Die: " + gameObject.name);
             Destroy(gameObject);
         }
     }

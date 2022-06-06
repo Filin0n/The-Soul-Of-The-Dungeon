@@ -26,7 +26,6 @@ namespace SOD.Fight
 
             if(other.TryGetComponent(out EnemyHP hp))
             {
-                Debug.Log("Hit");
                 hp.TakeDamage(_damage);
             }
         }
