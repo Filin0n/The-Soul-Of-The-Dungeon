@@ -1,5 +1,5 @@
 using UnityEngine;
-using SOD.Managers;
+using SOD.CycleOfDeath;
 
 namespace SOD.Fight
 {
@@ -8,7 +8,7 @@ namespace SOD.Fight
         [SerializeField] private int _maxHP = 5;
         [SerializeField] private int _currentHP;
 
-        private GameManager _gameManager;
+        private CycleOfDeathManager _gameManager;
 
         private void Awake()
         {
@@ -17,7 +17,7 @@ namespace SOD.Fight
 
         private void Start()
         {
-            _gameManager = FindObjectOfType<GameManager>();
+            _gameManager = FindObjectOfType<CycleOfDeathManager>();
         }
 
         public void TakeDamage(int damage)

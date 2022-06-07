@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeWeapon",
+                    "name": "Interactive",
                     "type": "Button",
-                    "id": "4ea5f021-4c34-415f-9675-1920846da8a4",
+                    "id": "0ac4f904-2424-4261-bd08-22d082d1187b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "d37f8d36-dbac-4eee-b4c4-97fe7dfd091c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -210,12 +219,23 @@
                 },
                 {
                     "name": "",
-                    "id": "01dfcfab-6b7b-46af-a2ac-1f60021efd03",
-                    "path": "<Keyboard>/1",
+                    "id": "098d25a0-b248-4ed8-b44d-22dfb673ffb9",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ChangeWeapon",
+                    "action": "Interactive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "523d09df-a1a0-4c54-a7a4-c1e8521f52f1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

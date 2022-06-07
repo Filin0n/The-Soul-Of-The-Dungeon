@@ -12,9 +12,6 @@ namespace SOD.Control
 
     public class PlayerController : MonoBehaviour
     {
-        //Тестовое поле
-        [SerializeField] private int _changeWeaponId;
-
         private Vector2 _inputValue;
         private PlayerMovement _movement;
         private AnimationControl _animationControl;
@@ -75,16 +72,6 @@ namespace SOD.Control
         {
             _movement.MoveInput = inputValue;
             _animationControl.UpdateMoveInput(inputValue);
-        }
-
-
-
-        //тестовое действие
-        private void OnChangeWeapon(InputValue value)
-        {
-            _playerFight.ChaingeWeapon(_changeWeaponId);
-
-            Debug.Log("Change weapon");
         }
     }
 }

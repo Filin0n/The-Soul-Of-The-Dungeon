@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SOD.Interactive;
 using System.Collections.Generic;
 using Cinemachine;
 
-namespace SOD.Managers
+namespace SOD.CycleOfDeath
 {
-
-    public class GameManager : MonoBehaviour
+    public class CycleOfDeathManager : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
@@ -15,23 +13,20 @@ namespace SOD.Managers
 
         private GameObject _player;
 
-
-        public int CurrentBonfireID
-        {
-            set
-            {
-                _currentBonfireID = value;
-            }
-        }
-
+        public GameObject Player => _player;
 
         private void Awake()
         {
-            PlayerRebirth();
-            Debug.Log("Current Bonfire ID: " + _currentBonfireID);
+            SpawnPlayer(FindSpawnPosition());
         }
 
-        private void PlayerRebirth()
+        private void SpawnPlayer(Vector3 spawnPosition)
+        {
+            _player = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
+            _virtualCamera.Follow = _player.transform;
+        }
+
+        private Vector3 FindSpawnPosition()
         {
             Bonfire[] bonfiers  = FindObjectsOfType<Bonfire>();
 
@@ -45,14 +40,23 @@ namespace SOD.Managers
                 }
             }
 
-            _player = Instantiate(_playerPrefab, currentSpawnPosition, Quaternion.identity);
-            _virtualCamera.Follow = _player.transform;
+            return currentSpawnPosition;
+        }
+
+        public void RelaxByBonfire()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void PlayerIsDead()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("You are dead");
+        }
+
+        public void SetCurrentBonfireID(int bonfireID)
+        {
+            _currentBonfireID = bonfireID;
         }
     }
 }
