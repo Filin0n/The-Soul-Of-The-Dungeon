@@ -10,6 +10,7 @@ namespace SOD.UI
         private CycleOfDeathManager _cycleOfDeathManager;
         private InteractiveMenu _interactiveMenu;
         private BonfireMenu _bonfireMenu;
+        private DataHolder _dataHolder;
 
         private bool _canRest = false;
         private int _bonfireID;
@@ -17,26 +18,34 @@ namespace SOD.UI
 
         private void Awake()
         {
+            _dataHolder = FindObjectOfType<DataHolder>();
             _interactiveMenu = FindObjectOfType<InteractiveMenu>();
             _cycleOfDeathManager = FindObjectOfType<CycleOfDeathManager>();
             _bonfireMenu = FindObjectOfType<BonfireMenu>();
+
+            if (_dataHolder.IsRelaxByBonfire)
+            {
+                _bonfireMenu.ActivateMenu();
+                PlayerControllSetActive(false);
+            }
         }
 
         private void OnInteractive(InputValue value)
         {
             if (_canRest)
             {
-                Debug.Log("Rest");
-
-                _cycleOfDeathManager.SetCurrentBonfireID(_bonfireID);
-                _bonfireMenu.ActivateMenu();
-                _canRest = false;
-                PlayerControllSetActive(false);
+                _cycleOfDeathManager.RelaxByBonfire(_bonfireID);
             }
         }
 
         private void OnExit(InputValue value)
         {
+            ExitBonfireMenu();
+        }
+
+        private void ExitBonfireMenu()
+        {
+            _dataHolder.IsRelaxByBonfire = false;
             _bonfireMenu.DeactivateMenu();
             PlayerControllSetActive(true);
         }
@@ -58,6 +67,7 @@ namespace SOD.UI
 
         public void ExitBonfireZone()
         {
+            _canRest = false;
             _interactiveMenu.DeactivateMenu();
         }
     }

@@ -9,14 +9,15 @@ namespace SOD.CycleOfDeath
     {
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-        private static int _currentBonfireID = 0;
 
+        private DataHolder _dataHolder;
         private GameObject _player;
 
         public GameObject Player => _player;
-
+    
         private void Awake()
         {
+            _dataHolder = FindObjectOfType<DataHolder>();
             SpawnPlayer(FindSpawnPosition());
         }
 
@@ -34,7 +35,7 @@ namespace SOD.CycleOfDeath
 
             foreach (Bonfire fire in bonfiers)
             {
-                if (fire.BonfireID == _currentBonfireID)
+                if (fire.BonfireID == _dataHolder.CurrentBonfireID)
                 {
                     currentSpawnPosition = fire.transform.position;
                 }
@@ -43,8 +44,10 @@ namespace SOD.CycleOfDeath
             return currentSpawnPosition;
         }
 
-        public void RelaxByBonfire()
+        public void RelaxByBonfire(int bonfireID)
         {
+            _dataHolder.CurrentBonfireID = bonfireID;
+            _dataHolder.IsRelaxByBonfire = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -52,11 +55,6 @@ namespace SOD.CycleOfDeath
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("You are dead");
-        }
-
-        public void SetCurrentBonfireID(int bonfireID)
-        {
-            _currentBonfireID = bonfireID;
         }
     }
 }
