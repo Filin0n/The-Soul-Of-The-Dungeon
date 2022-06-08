@@ -1,5 +1,6 @@
 using UnityEngine;
 using SOD.Enums;
+using SOD.UI;
 
 namespace SOD.Control
 {
@@ -26,6 +27,13 @@ namespace SOD.Control
 
         private bool _staminaCanRecover = true;
 
+        private PlayerInterface _playerInterface;
+
+        private void Awake()
+        {
+            _playerInterface = FindObjectOfType<PlayerInterface>();
+        }
+
         private void Update()
         {
             if (_staminaCanRecover)
@@ -40,6 +48,7 @@ namespace SOD.Control
             {
                 _currentStamina -= _dashConsumption;
                 _staminaCanRecover = false;
+                UpdateStamina();
                 Invoke("StaminaCanRecover", _deshRecoveryDelay);
                 return true;
             }
@@ -66,6 +75,7 @@ namespace SOD.Control
             if (_currentStamina - attackConsumption > 0)
             {
                 _currentStamina -= attackConsumption;
+                UpdateStamina();
                 _staminaCanRecover = false;
                 Invoke("StaminaCanRecover", _atackRecoveryDelay);
                 return true;
@@ -80,6 +90,8 @@ namespace SOD.Control
         {
             _currentStamina += (_maxStamina * _recoveryRate) * Time.deltaTime;
 
+            UpdateStamina();
+
             if (_currentStamina > _maxStamina)
             {
                 _currentStamina = _maxStamina;
@@ -90,6 +102,11 @@ namespace SOD.Control
         private void StaminaCanRecover()
         {
             _staminaCanRecover = true;
+        }
+
+        private void UpdateStamina()
+        {
+            _playerInterface.UpdateStamina(_currentStamina / _maxStamina);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace SOD.UI
     {
         [SerializeField] private GameObject _interactiveMenu;
         [SerializeField] private TMP_Text _text;
-        
 
         public void ActivateMenu(string text)
         {

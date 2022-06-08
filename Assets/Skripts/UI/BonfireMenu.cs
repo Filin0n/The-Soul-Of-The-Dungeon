@@ -6,6 +6,9 @@ namespace SOD.UI
     {
         [SerializeField] private GameObject _bonfireMenu;
 
+        public bool BonfireMenuIsActive => _bonfireMenu.activeSelf;
+
+
         private void Awake()
         {
             DeactivateMenu();

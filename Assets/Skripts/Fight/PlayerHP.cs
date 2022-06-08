@@ -1,5 +1,6 @@
 using UnityEngine;
 using SOD.CycleOfDeath;
+using SOD.UI;
 
 namespace SOD.Fight
 {
@@ -9,10 +10,13 @@ namespace SOD.Fight
         [SerializeField] private int _currentHP;
 
         private CycleOfDeathManager _gameManager;
+        private PlayerInterface _playerInterface;
 
         private void Awake()
         {
+            _playerInterface = FindObjectOfType<PlayerInterface>();
             _currentHP = _maxHP;
+            UpdateHalth();
         }
 
         private void Start()
@@ -23,6 +27,7 @@ namespace SOD.Fight
         public void TakeDamage(int damage)
         {
             _currentHP -= damage;
+            UpdateHalth();
 
             if (_currentHP <= 0)
             {
@@ -33,6 +38,11 @@ namespace SOD.Fight
         private void Die()
         {
             _gameManager.PlayerIsDead();
+        }
+
+        private void UpdateHalth()
+        {
+            _playerInterface.UpdateHalth((float)_currentHP / _maxHP);
         }
     }
 }
