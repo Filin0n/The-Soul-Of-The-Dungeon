@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace SOD.UI
 {
@@ -7,6 +8,7 @@ namespace SOD.UI
     {
         [SerializeField] private Slider _staminaBar;
         [SerializeField] private Slider _halthBar;
+        [SerializeField] private TMP_Text _numberOfSouls;
 
         public void UpdateStamina(float value)
         {
@@ -16,6 +18,11 @@ namespace SOD.UI
         public void UpdateHalth(float value)
         {
             _halthBar.value = value;
+        }
+
+        public void UpdateNumberOfSouls(int value)
+        {
+            _numberOfSouls.text = value.ToString();
         }
     }
 }

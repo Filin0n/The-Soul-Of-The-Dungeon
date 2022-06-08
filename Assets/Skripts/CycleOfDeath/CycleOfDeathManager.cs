@@ -8,6 +8,7 @@ namespace SOD.CycleOfDeath
     public class CycleOfDeathManager : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private GameObject _lostSoulPrefab;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
         private DataHolder _dataHolder;
@@ -19,6 +20,7 @@ namespace SOD.CycleOfDeath
         {
             _dataHolder = FindObjectOfType<DataHolder>();
             SpawnPlayer(FindSpawnPosition());
+            MoveSoulsToThePlaceOfDeath();
         }
 
         private void SpawnPlayer(Vector3 spawnPosition)
@@ -44,17 +46,34 @@ namespace SOD.CycleOfDeath
             return currentSpawnPosition;
         }
 
+        private void MoveSoulsToThePlaceOfDeath()
+        {
+            int countOfLostSouls = _dataHolder.CountOfLostSouls;
+
+            if (countOfLostSouls != 0)
+            {
+                Instantiate(_lostSoulPrefab, _dataHolder.LostSoulsPosition,Quaternion.identity);
+            }
+        }
+
         public void RelaxByBonfire(int bonfireID)
         {
             _dataHolder.CurrentBonfireID = bonfireID;
             _dataHolder.IsRelaxByBonfire = true;
+            _dataHolder.CountOfLostSouls = 0;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        public void PlayerIsDead()
+        public void PlayerIsDead(Vector3 diePosition)
         {
+            _dataHolder.PlayerIsDie(diePosition);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Debug.Log("You are dead");
+        }
+
+        public void PickUpLostSouls()
+        {
+            _dataHolder.CurrentCountOfSouls += _dataHolder.CountOfLostSouls;
         }
     }
 }

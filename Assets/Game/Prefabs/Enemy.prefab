@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHP: 3
   _currentHP: 0
+  _countOfSouls: 1
 --- !u!114 &2979229430179612756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5551c4c3a5b62d41a5ecd18ab8e22b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 0

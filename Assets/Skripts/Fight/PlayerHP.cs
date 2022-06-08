@@ -37,7 +37,7 @@ namespace SOD.Fight
 
         private void Die()
         {
-            _gameManager.PlayerIsDead();
+            _gameManager.PlayerIsDead(transform.position);
         }
 
         private void UpdateHalth()

@@ -6,10 +6,15 @@ namespace SOD.Fight
     {
         [SerializeField] private int _maxHP = 5;
         [SerializeField] private int _currentHP;
+        [SerializeField] private int _countOfSouls;
+
+        private DataHolder _dataHolder;
+
 
         private void Awake()
         {
             _currentHP = _maxHP;
+            _dataHolder = FindObjectOfType<DataHolder>();
         }
 
         public void TakeDamage(int damage)
@@ -24,6 +29,7 @@ namespace SOD.Fight
 
         private void Die()
         {
+            _dataHolder.CurrentCountOfSouls += _countOfSouls;
             Destroy(gameObject);
         }
     }
