@@ -13,9 +13,14 @@ namespace SOD.EnemyMovement
             _meshAgent = GetComponent<NavMeshAgent>();
         }
 
-        public void MoveTo(Vector3 target)
+        public void SetTarget(Vector3 target)
         {
             _meshAgent.SetDestination(target);
+        }
+
+        public Vector3 GetDistination()
+        {
+            return _meshAgent.destination;
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using SOD.EnemyAnimations;
 
 namespace SOD.EnemyMovement
 {
@@ -7,9 +8,10 @@ namespace SOD.EnemyMovement
     {
         [SerializeField] private PatrolPath _patrolPath;
         [SerializeField] private float _waitingTimeAtPoint;
-
-        private MoveToTarget _moveToTarget;
         
+        private MoveToTarget _moveToTarget;
+        private EnemyAnimationControl _animationControl;
+
         private int _currentPointIndex = 0;
         private float _currentWaitingTimeAtPoint;
         private Vector3 _enemyStartPosition;
@@ -17,6 +19,7 @@ namespace SOD.EnemyMovement
         private void Awake()
         {
             _moveToTarget = GetComponent<MoveToTarget>();
+            _animationControl = GetComponent<EnemyAnimationControl>();
         }
 
         private void Start()
@@ -33,9 +36,11 @@ namespace SOD.EnemyMovement
         {
             Vector3 moveTarget = _enemyStartPosition;
 
+            bool atWaypoint = AtWaypoint();
+
             if (_patrolPath != null)
             {
-                if (AtWaypoint() && _currentWaitingTimeAtPoint >= _waitingTimeAtPoint)
+                if (atWaypoint && _currentWaitingTimeAtPoint >= _waitingTimeAtPoint)
                 {
                     _currentWaitingTimeAtPoint = 0;
                     _currentPointIndex = _patrolPath.GetNextIndex(_currentPointIndex);
@@ -44,24 +49,22 @@ namespace SOD.EnemyMovement
                 moveTarget = _patrolPath.GetWaypoint(_currentPointIndex);
             }
 
-            _moveToTarget.MoveTo(moveTarget);
+            _moveToTarget.SetTarget(moveTarget);
         }
 
         private bool AtWaypoint()
         {
-            float distance = Vector3.Distance(transform.position, _patrolPath.GetWaypoint(_currentPointIndex));
+            float distance = Vector3.Distance(transform.position, _moveToTarget.GetDistination());
 
-            if (distance < 1f)
+            if (distance < 0.1f)
             {
-                // ¬ключить idle анимацию
-
+                _animationControl.SetDirection(0f,0f);
                 _currentWaitingTimeAtPoint += Time.fixedDeltaTime;
                 return true;
             }
             else
             {
-                // ¬ключить анимацию ходьбы
-
+                _animationControl.SetDirection(0f, 1f);
                 return false;
             }
         }

@@ -54,7 +54,7 @@ namespace SOD.UI
 
         private void PlayerControllSetActive(bool active)
         {
-            GameObject player = _cycleOfDeathManager.Player;
+            GameObject player = CycleOfDeathManager.Player;
 
             player.GetComponent<PlayerInput>().enabled = active;
             player.GetComponent<Anchor>().enabled = active;

@@ -12,9 +12,9 @@ namespace SOD.CycleOfDeath
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
         private DataHolder _dataHolder;
-        private GameObject _player;
+        private static GameObject _player;
 
-        public GameObject Player => _player;
+        public static GameObject Player => _player;
     
         private void Awake()
         {
