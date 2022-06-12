@@ -1,8 +1,7 @@
 using UnityEngine;
 
-namespace SOD.EnemyMovement
+namespace SOD.EnemyPatrolling
 {
-
     public class PatrolPath : MonoBehaviour
     {
         private const float _waypointGizmoRadius = 0.3f;

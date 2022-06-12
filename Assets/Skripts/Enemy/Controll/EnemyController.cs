@@ -1,36 +1,63 @@
 using UnityEngine;
-using SOD.EnemyMovement;
+using UnityEngine.AI;
+using SOD.EnemyPatrolling;
 using SOD.EnemyFight;
 using SOD.CycleOfDeath;
+using SOD.EnemyAnimations;
 
 namespace SOD.EnemyControll
 {
     public class EnemyController : MonoBehaviour
     {
         [SerializeField] private float _agroRadius = 3f;
+        [SerializeField] private EnemyWeapon _enemyWeapon;
 
-        private EnemyAttack _enemyAttack;
+        private EnemyFightBehaviour _fightBehaviour;
         private Patrolling _patrolling;
+        private NavMeshAgent _meshAgent;
+        private EnemyAnimationControl _enemyAnimation;
         private Transform _player;
+
+        private bool _isCanMove = true;
+
+        public EnemyWeapon EnemyWeapon => _enemyWeapon;
+        public bool IsCanMove
+        {
+            get
+            {
+                return _isCanMove;
+            }
+            set
+            {
+                _isCanMove = value;
+            }
+        }
 
         private void Awake()
         {
-            _enemyAttack = GetComponent<EnemyAttack>();
+            _fightBehaviour = GetComponent<EnemyFightBehaviour>();
             _patrolling = GetComponent<Patrolling>();
+            _meshAgent = GetComponent<NavMeshAgent>();
+            _enemyAnimation = GetComponent<EnemyAnimationControl>();
             _player = CycleOfDeathManager.Player.transform;
         }
 
         private void FixedUpdate()
         {
+            if (!_isCanMove)
+            {
+                _meshAgent.SetDestination(transform.position);
+                _enemyAnimation.SetDirection(0f,0f);
+                return;
+            }
+
             if (PlayerInAgroradius())
             {
-                _patrolling.enabled = false;
-                _enemyAttack.enabled = true;
+                _fightBehaviour.FightBehaviour();
             }
             else
             {
-                _patrolling.enabled = true;
-                _enemyAttack.enabled = false;
+                _patrolling.Patrool();
             }
         }
 

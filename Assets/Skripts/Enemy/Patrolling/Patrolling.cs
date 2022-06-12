@@ -1,15 +1,15 @@
 using UnityEngine;
 using SOD.EnemyAnimations;
+using UnityEngine.AI;
 
-namespace SOD.EnemyMovement
+namespace SOD.EnemyPatrolling
 {
-    [RequireComponent(typeof(MoveToTarget))]
     public class Patrolling : MonoBehaviour
     {
         [SerializeField] private PatrolPath _patrolPath;
         [SerializeField] private float _waitingTimeAtPoint;
-        
-        private MoveToTarget _moveToTarget;
+
+        private NavMeshAgent _meshAgent;
         private EnemyAnimationControl _animationControl;
 
         private int _currentPointIndex = 0;
@@ -18,7 +18,7 @@ namespace SOD.EnemyMovement
 
         private void Awake()
         {
-            _moveToTarget = GetComponent<MoveToTarget>();
+            _meshAgent = GetComponent<NavMeshAgent>();
             _animationControl = GetComponent<EnemyAnimationControl>();
         }
 
@@ -27,12 +27,7 @@ namespace SOD.EnemyMovement
             _enemyStartPosition = transform.position;
         }
 
-        private void FixedUpdate()
-        {
-            Patrool();
-        }
-
-        private void Patrool()
+        public void Patrool()
         {
             Vector3 moveTarget = _enemyStartPosition;
 
@@ -48,13 +43,12 @@ namespace SOD.EnemyMovement
 
                 moveTarget = _patrolPath.GetWaypoint(_currentPointIndex);
             }
-
-            _moveToTarget.SetTarget(moveTarget);
+            _meshAgent.SetDestination(moveTarget);
         }
 
         private bool AtWaypoint()
         {
-            float distance = Vector3.Distance(transform.position, _moveToTarget.GetDistination());
+            float distance = Vector3.Distance(transform.position, _meshAgent.destination);
 
             if (distance < 0.1f)
             {

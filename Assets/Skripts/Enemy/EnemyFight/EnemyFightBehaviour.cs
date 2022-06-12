@@ -1,32 +1,33 @@
 using UnityEngine;
+using UnityEngine.AI;
 using SOD.CycleOfDeath;
-using SOD.EnemyMovement;
 using SOD.EnemyAnimations;
 
 namespace SOD.EnemyFight
 {
-    public class EnemyAttack : MonoBehaviour
+    public class EnemyFightBehaviour : MonoBehaviour
     {
         [SerializeField] private float _minDistToPayer = 1.5f;
 
         private Transform _player;
-        private MoveToTarget _moveTo;
+        private NavMeshAgent _meshAgent;
         private EnemyAnimationControl _enemyAnimation;
 
         private void Awake()
         {
             _player = CycleOfDeathManager.Player.transform;
-            _moveTo = GetComponent<MoveToTarget>();
+            _meshAgent = GetComponent<NavMeshAgent>();
             _enemyAnimation = GetComponent<EnemyAnimationControl>();
         }
 
-        private void FixedUpdate()
+        public void FightBehaviour()
         {
             float distToPlayer = Vector3.Distance(transform.position, _player.position);
 
             if (distToPlayer > _minDistToPayer)
             {
                 MoveToPlayer();
+                _enemyAnimation.ResetTriggers();
             }
             else
             {
@@ -36,15 +37,16 @@ namespace SOD.EnemyFight
 
         private void MoveToPlayer()
         {
-            _moveTo.SetTarget(_player.position);
+            _meshAgent.SetDestination(_player.position);
             _enemyAnimation.SetDirection(0f,1f);
         }
 
         private void Attack()
         {
             LookAtPlayer();
-            _moveTo.SetTarget(transform.position);
+            _meshAgent.SetDestination(transform.position);
             _enemyAnimation.SetDirection(0f, 0f);
+            _enemyAnimation.Attack();
         }
 
         private void LookAtPlayer()

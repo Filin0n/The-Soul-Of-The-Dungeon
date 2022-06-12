@@ -11,5 +11,15 @@ namespace SOD.EnemyAnimations
             _animator.SetFloat("Horisontal", horisontal);
             _animator.SetFloat("Vertical", vertical);
         }
+
+        public void Attack()
+        {
+            _animator.SetTrigger("Attack");
+        }
+
+        public void ResetTriggers()
+        {
+            _animator.ResetTrigger("Attack");
+        }
     }
 }
