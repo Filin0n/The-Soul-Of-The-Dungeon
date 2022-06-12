@@ -7,12 +7,13 @@ namespace SOD.EnemyPatrolling
     public class Patrolling : MonoBehaviour
     {
         [SerializeField] private PatrolPath _patrolPath;
+        [SerializeField] private int _startPointIndex = 0;
         [SerializeField] private float _waitingTimeAtPoint;
 
         private NavMeshAgent _meshAgent;
         private EnemyAnimationControl _animationControl;
+        private int _currentPointIndex;
 
-        private int _currentPointIndex = 0;
         private float _currentWaitingTimeAtPoint;
         private Vector3 _enemyStartPosition;
 
@@ -20,6 +21,7 @@ namespace SOD.EnemyPatrolling
         {
             _meshAgent = GetComponent<NavMeshAgent>();
             _animationControl = GetComponent<EnemyAnimationControl>();
+            _currentPointIndex = _startPointIndex;
         }
 
         private void Start()

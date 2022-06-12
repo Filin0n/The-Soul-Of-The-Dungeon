@@ -44,14 +44,16 @@ namespace SOD.Control
 
         public bool Dash()
         {
-            if(_currentStamina - _dashConsumption > 0)
+            if(_currentStamina > 0)
             {
                 _currentStamina -= _dashConsumption;
+                Mathf.Clamp(_currentStamina, 0, Mathf.Infinity);
                 _staminaCanRecover = false;
                 UpdateStamina();
                 Invoke("StaminaCanRecover", _deshRecoveryDelay);
                 return true;
             }
+
 
             return false;
         }
@@ -72,9 +74,10 @@ namespace SOD.Control
             }
 
 
-            if (_currentStamina - attackConsumption > 0)
+            if (_currentStamina - (attackConsumption/2) > 0)
             {
                 _currentStamina -= attackConsumption;
+                Mathf.Clamp(_currentStamina, 0, Mathf.Infinity);
                 UpdateStamina();
                 _staminaCanRecover = false;
                 Invoke("StaminaCanRecover", _atackRecoveryDelay);
