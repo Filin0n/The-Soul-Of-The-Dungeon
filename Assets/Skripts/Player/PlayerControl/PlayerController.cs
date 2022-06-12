@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using SOD.Movement;
 using SOD.Animations;
-using SOD.Fight;
+using SOD.PlayerFight;
 using SOD.Enums;
 
 namespace SOD.Control
@@ -15,9 +15,8 @@ namespace SOD.Control
         private Vector2 _inputValue;
         private PlayerMovement _movement;
         private AnimationControl _animationControl;
-        private PlayerFight _playerFight;
+        private PlayerFightController _playerFight;
         private StaminaControl _staminaControl;
-
         private bool _isCanMove = true;
 
         public bool IsCanMove 
@@ -41,9 +40,8 @@ namespace SOD.Control
         {
             _movement = GetComponent<PlayerMovement>();
             _animationControl = GetComponent<AnimationControl>();
-            _playerFight = GetComponent<PlayerFight>();
+            _playerFight = GetComponent<PlayerFightController>();
             _staminaControl = GetComponent<StaminaControl>();
-  
         }
 
         private void OnMove(InputValue value)

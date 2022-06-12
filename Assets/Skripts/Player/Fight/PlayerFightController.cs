@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOD.Enums;
 
-namespace SOD.Fight
+namespace SOD.PlayerFight
 {
-    public class PlayerFight : MonoBehaviour
+    public class PlayerFightController : MonoBehaviour
     {
         [Header("Right hand")]
         [SerializeField] private List<PlayerWeapon> _weapns;

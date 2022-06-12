@@ -1,7 +1,7 @@
 using UnityEngine;
 using SOD.Enums;
 
-namespace SOD.Fight
+namespace SOD.PlayerFight
 {
     public class PlayerWeapon : MonoBehaviour
     {
