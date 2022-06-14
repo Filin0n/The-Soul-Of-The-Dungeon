@@ -6,7 +6,7 @@ namespace SOD.Animations
 {
     public class AnimationsEventsCatcher : MonoBehaviour
     {
-        [SerializeField] private PlayerFight.PlayerFightController _playerFight;
+        [SerializeField] private PlayerFightController _playerFight;
         [SerializeField] private PlayerController _playerController;
 
         public void CanAttack()

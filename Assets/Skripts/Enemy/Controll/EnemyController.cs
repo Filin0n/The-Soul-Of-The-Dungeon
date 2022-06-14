@@ -72,10 +72,10 @@ namespace SOD.EnemyControll
             return false;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position,_agroRadius);
+            Gizmos.DrawWireSphere(transform.position, _agroRadius);
         }
     }
 }
